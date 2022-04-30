@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install tmux
+      apt:
+        name: tmux
+    - name: Install neovim
+      apt:
+        name: neovim
