@@ -1,0 +1,24 @@
+---
+- name: download
+  get_url:
+    url: "{{ rust_analyzer_url }}"
+    dest: "{{ tools_dir + '/rust-analyzer.gz' }}"
+  become: true
+
+- name: unzip
+  shell: "{{ 'gunzip -q ' + tools_dir + '/rust-analyzer.gz' }}"
+  become: true
+
+- name: set permissions
+  file:
+    path: "{{ tools_dir + '/rust-analyzer/' }}"
+    state: file
+    mode: 0755
+  become: true
+
+- name: add sym-link to /usr/bin
+  file:
+    path: /usr/bin/rust-analyzer
+    src: "{{ tools_dir + '/rust-analyzer/rust-analyzer' }}"
+    state: link
+  become: true

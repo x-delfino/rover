@@ -1,0 +1,20 @@
+---
+- name: ensure cargo
+  shell: ~/.cargo/bin/cargo --version
+
+- name: ensure prereqs
+  apt:
+    name:
+      - cmake
+      - pkg-config
+      - libfreetype6-dev
+      - libfontconfig1-dev
+      - libxcb-xfixes0-dev
+      - libxkbcommon-dev
+      - python3
+    state: present
+    update_cache: true
+  become: true
+
+- name: install
+  shell: ~/.cargo/bin/cargo install alacritty

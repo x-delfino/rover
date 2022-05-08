@@ -1,0 +1,16 @@
+---
+- name: install
+  when: ansible_distribution == "Debian"
+  apt:
+    name: task-xfce-desktop
+    state: latest
+    update_cache: true
+  become: true
+
+- name: install
+  when: ansible_distribution == "Kali"
+  apt:
+    name: kali-desktop-xfce
+    state: latest
+    update_cache: true
+  become: true

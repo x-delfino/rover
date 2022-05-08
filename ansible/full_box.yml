@@ -1,0 +1,46 @@
+---
+- name: install gui
+  hosts: full_box
+  roles:
+    - {role: xfce, when: "gui == 'xfce'"}
+    - {role: gnome, when: "gui == 'gnome'"}
+    - {role: kde, when: "gui == 'kde'"}
+    - {role: mate, when: "gui == 'mate'"}
+
+- name: install kali meta-package
+  hosts: full_box:&os_kali
+  roles:
+    - kali_meta
+
+- name: install utils
+  hosts: full_box:&utils
+  roles:
+    - curl
+    - wget
+    - git
+    - tmux
+    - neovim
+    - zsh
+    - powershell
+    - ps_script_analyzer
+    - rust
+    - rust_analyzer
+    - golang
+    - python3.9_venv
+
+- name: install security tools
+  hosts: full_box:&security
+  roles:
+    - updog
+    - rlwrap
+    - pyftpdlib
+    - gobuster
+    - impacket
+
+- name: install cloud tools
+  hosts: full_box:&cloud
+  roles:
+    - ps_az
+    - azure_cli
+    - scoutsuite
+    - trufflehog

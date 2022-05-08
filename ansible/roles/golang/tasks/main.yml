@@ -1,0 +1,14 @@
+---
+- name: check installed
+  shell: /usr/local/go/bin/go version
+  register: version
+  ignore_errors: true
+
+- name: download and unzip
+  when: version.failed
+  unarchive:
+    remote_src: true
+    src: "{{ golang_url }}"
+    dest: /usr/local
+    mode: 0755
+  become: true

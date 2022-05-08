@@ -1,0 +1,23 @@
+---
+- name: ensure prereqs
+  apt:
+    name:
+      - pkg-config
+      - libncursesw5-dev
+      - libreadline-dev
+    update_cache: true
+    state: present
+  become: true
+
+- name: download and unzip
+  unarchive:
+    dest: /tmp/nnn/
+    remote_src: true
+    src: https://github.com/jarun/nnn/archive/refs/tags/v4.5.zip
+
+- name: install
+  make:
+    chdir: /tmp/nnn/v4.5/
+    params:
+      - 0_GITSTATUS=1
+      - 0_NERD=1

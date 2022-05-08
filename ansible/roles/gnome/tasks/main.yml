@@ -1,0 +1,7 @@
+---
+- name: Install kali gnome
+  apt:
+    name: kali-desktop-gnome
+    state: latest
+    update_cache: true
+  become: true

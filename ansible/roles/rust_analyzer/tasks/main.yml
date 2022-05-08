@@ -1,0 +1,11 @@
+---
+- name: check if installed
+  file:
+    state: file
+    path: "{{ tools_dir + '/rust-analyzer' }}"
+  register: installed
+  ignore_errors: true
+
+- name: install
+  when: installed.state == 'absent'
+  include_tasks: install.yml

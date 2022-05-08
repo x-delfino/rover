@@ -1,0 +1,14 @@
+---
+- name: ensure golang installed
+  shell: /usr/local/go/bin/go version
+
+- name: get repo
+  git:
+    repo: "{{ trufflehog_repo }}"
+    dest: "{{ tools_dir + '/trufflehog/'}}"
+  become: true
+
+- name: install
+  shell: /usr/local/go/bin/go install
+  args:
+    chdir: "{{ tools_dir + '/trufflehog' }}"

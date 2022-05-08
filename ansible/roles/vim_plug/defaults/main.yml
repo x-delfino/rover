@@ -1,0 +1,3 @@
+---
+vim_plug_dir: ~/.local/share/nvim/site/autoload
+vim_plug_path: "{{ vim_plug_dir + '/plug.vim' }}"

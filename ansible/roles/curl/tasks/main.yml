@@ -1,0 +1,7 @@
+---
+- name: install
+  apt:
+    name: curl
+    state: present
+    update_cache: true
+  become: true

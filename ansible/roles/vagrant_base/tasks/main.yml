@@ -1,0 +1,68 @@
+---
+- name: purge packages
+  apt:
+    purge: true
+    autoclean: true
+    autoremove: true
+    state: absent
+    name:
+      - libx11-data
+      - xauth
+      - libxmuu1
+      - libxcb1
+      - libx11-6
+      - libxext6
+      - ppp
+      - pppconfig
+      - pppoeconf
+      - popularity-contest
+      - installation-report
+  become: true
+
+- name: clear machine-id
+  copy:
+    dest: /etc/machine-id
+    content: ''
+    force: true
+  become: true
+
+- name: get log files
+  find:
+    paths: /var/log
+    recurse: true
+  register: log_files
+  become: true
+
+- name: get tmp files
+  find:
+    paths:
+      - /tmp
+      - /var/tmp
+    recurse: true
+    excludes: '*ansible*'
+  register: tmp_files
+  become: true
+
+- name: get cache files
+  find:
+    paths: /var/cache
+    recurse: true
+  register: cache_files
+  become: true
+
+- name: clear log files
+  copy:
+    dest: "{{ item.path }}"
+    content: ''
+    force: true
+  with_items: "{{ log_files.files }}"
+  become: true
+
+- name: remove tmp and cache files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items:
+    - "{{ cache_files.files }}"
+    - "{{ tmp_files.files }}"
+  become: true

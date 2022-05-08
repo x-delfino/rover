@@ -1,0 +1,27 @@
+---
+- name: ensure ~/.ssh/
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: '700'
+    owner: vagrant
+    group: vagrant
+
+- name: Download vagrant ssh key
+  get_url:
+    url: "{{ vagrant_key_url }}"
+    owner: vagrant
+    group: vagrant
+    mode: '644'
+    dest: "{{ ssh_dir + '/authorized_keys' }}"
+
+- name: set "UseDNS no"
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '.*UseDNS.*'
+    line: 'UseDNS no'
+    insertbefore: BOF
+    backup: true
+  notify:
+    - restart sshd
+  become: true

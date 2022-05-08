@@ -1,0 +1,27 @@
+---
+- name: ensure dir
+  file:
+    state: directory
+    path: "{{ tools_dir + '/microsoft/powershell/7' }}"
+  become: true
+
+- name: download and unzip
+  unarchive:
+    remote_src: true
+    src: "{{ pwsh_7_arm_url }}"
+    dest: "{{ tools_dir + '/microsoft/powershell/7' }}"
+  become: true
+
+- name: Set executable
+  file:
+    path: "{{ tools_dir + '/microsoft/powershell/7/pwsh' }}"
+    mode: 0755
+    state: file
+  become: true
+
+- name: add sym-link
+  file:
+    path: /usr/bin/pwsh
+    src: "{{ tools_dir + '/microsoft/powershell/7/pwsh' }}"
+    state: link
+  become: true
