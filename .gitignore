@@ -1,5 +1,5 @@
 builds/*
-/secrets/*
-/roles/dotfiles/
+secrets/*
+roles/dotfiles/
 customize.yml
 .vagrant/
