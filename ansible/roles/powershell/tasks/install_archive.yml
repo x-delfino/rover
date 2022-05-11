@@ -1,26 +1,27 @@
 ---
 - name: ensure dir
-  file:
+  ansible.builtin.file:
     state: directory
     path: "{{ tools_dir + '/microsoft/powershell/7' }}"
+    mode: 0755
   become: true
 
 - name: download and unzip
-  unarchive:
+  ansible.builtin.unarchive:
     remote_src: true
-    src: "{{ pwsh_7_arm_url }}"
+    src: "{{ pwsh_archive_url }}"
     dest: "{{ tools_dir + '/microsoft/powershell/7' }}"
   become: true
 
 - name: Set executable
-  file:
+  ansible.builtin.file:
     path: "{{ tools_dir + '/microsoft/powershell/7/pwsh' }}"
     mode: 0755
     state: file
   become: true
 
 - name: add sym-link
-  file:
+  ansible.builtin.file:
     path: /usr/bin/pwsh
     src: "{{ tools_dir + '/microsoft/powershell/7/pwsh' }}"
     state: link

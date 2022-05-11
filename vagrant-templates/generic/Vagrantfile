@@ -1,0 +1,55 @@
+# frozen_string_literal: true
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'json'
+
+VAR_FILE = 'vars.json'
+
+file = File.read(VAR_FILE)
+vars = JSON.parse(file)
+
+Vagrant.configure('2') do |config|
+  vars['hosts'].each do |host|
+    ans_groups = {}
+    host['ans_groups'].each do |group|
+      ans_groups[group] = [host['name']]
+    end
+
+    unless host['ans_vars'].nil?
+      vars = {}
+      host['ans_vars'].each do |var|
+        var_name = var.keys.first
+        vars[var_name] = var[var_name]
+      end
+      ans_vars = { host['name'] => vars }
+    end
+
+    config.vm.define host['name'] do |box|
+      box.vm.box = host['box']
+      box.vm.hostname = host['hostname']
+      box.vm.provider 'parallels' do |prl|
+        prl.name = host['box']
+        prl.cpus = host['cpus']
+        prl.memory = host['memory']
+        prl.customize ['set', :id,
+                       '--sync-host-printers', 'off',
+                       '--auto-share-camera', 'off',
+                       '--auto-share-bluetooth', 'off']
+        prl.update_guest_tools = true
+      end
+    end
+    config.vm.provision 'ansible' do |ansible|
+      ansible.playbook = '../../ansible/main.yml'
+      ansible.groups = ans_groups
+      ansible.host_vars = ans_vars
+      ansible.vault_password_file = host['ans_vault_pwd_file'] unless host['ans_vault_pwd_file'].nil?
+      #   'default' => {
+      #     'gui' => 'xfce' # xfce, gnome, kde, mate, i3
+      #   }
+      # }
+      # ansible.verbose = '-vvv'
+    end
+  end
+end

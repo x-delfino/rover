@@ -1,8 +1,8 @@
 ---
 - name: install linux headers
-  apt:
-    name: linux-headers-{{ansible_kernel}}
-    state: latest
+  ansible.builtin.apt:
+    name: linux-headers-{{ ansible_kernel }}
+    state: present
   become: true
 
 - name: mount installer
@@ -14,19 +14,21 @@
   become: true
 
 - name: get version
-  slurp:
+  ansible.builtin.slurp:
     src: /tmp/parallels/version
   register: pt_version
   become: true
 
 - name: print version
-  debug:
+  ansible.builtin.debug:
     msg: "Parallels Tools Version {{ pt_version.content | b64decode }}"
   become: true
 
 - name: install
-  shell:
+  ansible.builtin.command:
     cmd: /tmp/parallels/install --install-unattended-with-deps
+  register: install
+  changed_when: install.rc == 0
   become: true
 
 - name: unmount installer
@@ -39,6 +41,6 @@
 
 
 - name: remove iso
-  file:
+  ansible.builtin.file:
     path: /home/vagrant/prl-tools-lin-arm.iso
     state: absent

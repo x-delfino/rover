@@ -1,2 +1,6 @@
 ---
-rust_analyzer_url: https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-aarch64-unknown-linux-gnu.gz
+rust_lsp_base: https://github.com/rust-analyzer/rust-analyzer/releases
+rust_lsp_ver: latest/download
+rust_lsp_zip: rust-analyzer-aarch64-unknown-linux-gnu.gz
+rust_lsp_url: "{{ rust_lsp_base + '/' + rust_lsp_ver + '/' + rust_lsp_zip }}"
+rust_lsp_dir: "{{ tools_dir + '/rust-analyzer' }}"

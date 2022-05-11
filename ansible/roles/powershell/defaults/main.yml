@@ -1,2 +1,5 @@
 ---
-pwsh_7_arm_url: https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/powershell-7.2.3-linux-arm64.tar.gz
+pwsh_base_url: https://github.com/PowerShell/PowerShell/releases/download
+pwsh_ver: v7.2.3
+pwsh_archive: powershell-7.2.3-linux-arm64.tar.gz
+pwsh_archive_url: "{{ pwsh_base_url + '/' + pwsh_ver + '/' + pwsh_archive}}"

@@ -1,20 +1,46 @@
 ---
 - name: check installed
-  shell:
+  ansible.builtin.command:
     cmd: pwsh -version
     warn: false
   register: version
-  ignore_errors: true
+  failed_when: false
+  changed_when: false
+
+- name: install dependencies
+  when: ansible_distribution == "Debian"
+  ansible.builtin.apt:
+    name: libicu67
+    state: present
+    update_cache: true
+  become: true
+
+- name: install dependencies
+  when: ansible_distribution == "Kali"
+  ansible.builtin.apt:
+    name: libicu71
+    state: present
+    update_cache: true
+  become: true
 
 
-- name: 'Install powershell debian 11'
-  when: ansible_distribution == "Debian" and ansible_distribution_major_version == "11" and version.failed
-  include_tasks: deb_11.yml
+- name: 'Install from archive'
+  when: >
+    ((ansible_distribution == "Debian" and
+    ansible_distribution_major_version == "11") or
+    ansible_distribution == "Kali") and
+    version.rc != 0
+  include_tasks: install_archive.yml
 
-- name: 'Install powershell debian <11'
-  when: ansible_distribution == "Debian" and ansible_distribution_major_version != "11"
-  apt:
+- name: 'Install from repo'
+  when: >
+    not
+    ((ansible_distribution == "Debian" and
+    ansible_distribution_major_version == "11") or
+    ansible_distribution == "Kali") and
+    version.rc != 0
+  ansible.builtin.apt:
     name: powershell
-    present: true
+    state: present
     update_cache: true
   become: true

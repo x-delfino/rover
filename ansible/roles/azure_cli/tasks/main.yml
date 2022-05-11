@@ -1,15 +1,16 @@
 ---
-- name: ensure python3 and pip are installed
-  apt:
+- name: ensure python3, pip and virtualenv are installed
+  ansible.builtin.apt:
     name:
       - python3
       - python3-pip
+      - virtualenv
     state: present
     update_cache: true
   become: true
 
 - name: install
-  pip:
+  ansible.builtin.pip:
     name: az-cli
     state: present
-    executable: pip3
+    virtualenv: "{{ venv_dir + '/az-cli' }}"

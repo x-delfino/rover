@@ -1,0 +1,24 @@
+{
+	"hosts": [{
+		"box": "debiantest",
+		"hostname": "debian-hostname",
+		"name": "debian-hostname",
+		"cpus": 2,
+		"memory": 2048,
+		"ans_groups": ["full_box", "utils", "security", "cloud", "custom"],
+		"ans_vars": [],
+		"ans_vault_pwd_file": "../../secrets/pass"
+	},
+	{
+		"box": "kalitest",
+		"hostname": "kali-hostname",
+		"name": "kali-hostname",
+		"cpus": 2,
+		"memory": 2048,
+		"ans_groups": ["full_box", "utils", "security", "cloud", "custom"],
+		"ans_vars": [ 
+			{"gui": "xfce"}
+		],
+		"ans_vault_pwd_file": "../../secrets/pass"
+	}]
+}

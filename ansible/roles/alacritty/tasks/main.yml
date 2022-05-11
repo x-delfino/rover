@@ -1,8 +1,11 @@
 ---
 - name: ensure cargo
   shell: ~/.cargo/bin/cargo --version
+  register: version
+  ignore_errors: true
 
 - name: ensure prereqs
+  when: not version.failed
   apt:
     name:
       - cmake

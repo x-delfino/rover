@@ -15,6 +15,8 @@
 - name: install utils
   hosts: full_box:&utils
   roles:
+    - zip
+    - unzip
     - curl
     - wget
     - git

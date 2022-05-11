@@ -1,7 +1,4 @@
 ---
-- name: ensure golang installed
-  shell: /usr/local/go/bin/go version
-
 - name: get repo
   git:
     repo: "{{ trufflehog_repo }}"
@@ -9,6 +6,8 @@
   become: true
 
 - name: install
-  shell: /usr/local/go/bin/go install
+  ansible.builtin.command: /usr/local/go/bin/go install
   args:
     chdir: "{{ tools_dir + '/trufflehog' }}"
+  register: install
+  changed_when: install.rc == 0
