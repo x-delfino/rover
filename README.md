@@ -29,6 +29,10 @@ Provided templates install roles from the following collections from [ansible-co
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) (Optional)
 
 ## Usage
+- Clone repo:
+  `git clone https://github.com/x-delfino/rover.git`
+  or
+  `git clone git@github.com:x-delfino/rover.git`
 - Set variables in `vars.json`
 - Run `vagrant up`
 - develop/learn/test/hack away!
