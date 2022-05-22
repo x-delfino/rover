@@ -1,0 +1,29 @@
+{
+  "hosts": [
+   {
+      "box": "delfino/kali-2022.1-arm64",
+      "ssh_agent": true,
+      "hostname": "kali-hostname",
+      "name": "kali-hostname",
+      "cpus": 2,
+      "memory": 2048,
+      "playbooks": [
+	      { "path": "playbook.yml",
+	        "galaxy_file": "requirements.yml"}
+      ]
+    },
+    {
+      "box": "delfino/debian-11.3-arm64",
+      "ssh_agent": true,
+      "hostname": "debian-hostname",
+      "name": "debian-hostname",
+      "cpus": 2,
+      "memory": 2048,
+      "playbooks": [
+	      { "path": "playbook.yml",
+	        "galaxy_file": "requirements.yml"}
+      ]
+    }
+ 
+  ]
+}

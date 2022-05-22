@@ -1,0 +1,9 @@
+---
+- name: install all utils
+  import_playbook: x_delfino.utils.all
+
+- name: install all cloud
+  import_playbook: x_delfino.cloud.all
+
+- name: install all security
+  import_playbook: x_delfino.security.all

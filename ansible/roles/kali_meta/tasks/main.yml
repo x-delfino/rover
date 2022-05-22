@@ -1,7 +1,0 @@
----
-- name: install
-  apt:
-    name: kali-linux-{{ kali_meta | default("default") }}
-    state: latest
-    update_cache: true
-  become: true

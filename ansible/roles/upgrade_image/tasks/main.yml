@@ -1,7 +1,0 @@
----
-- name: upgrade linux image
-  apt:
-    name: linux-image-{{ansible_kernel}}
-    state: latest
-    update_cache: true
-  become: true

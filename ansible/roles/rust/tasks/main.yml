@@ -1,9 +1,0 @@
----
-- name: check if installed
-  shell: ~/.cargo/bin/rustc --version
-  ignore_errors: true
-  register: version
-
-- name: install
-  import_tasks: install.yml
-  when: version.failed

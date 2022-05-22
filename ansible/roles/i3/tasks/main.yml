@@ -1,7 +1,0 @@
----
-- name: Install kali i3
-  apt:
-    name: kali-desktop-i3
-    state: latest
-    update_cache: true
-  become: true

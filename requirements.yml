@@ -1,0 +1,5 @@
+---
+collections:
+  - x_delfino.security
+  - x_delfino.utils
+  - x_delfino.cloud

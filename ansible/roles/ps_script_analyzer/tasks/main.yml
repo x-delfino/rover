@@ -1,3 +1,0 @@
----
-- name: install
-  shell: "pwsh -nop -nol -noni -c 'install-module PSScriptAnalyzer -Force'"

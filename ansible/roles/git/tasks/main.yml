@@ -1,7 +1,0 @@
----
-- name: install git
-  apt:
-    name: git
-    state: latest
-    update_cache: true
-  become: true

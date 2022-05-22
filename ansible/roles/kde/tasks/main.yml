@@ -1,7 +1,0 @@
----
-- name: Install
-  apt:
-    name: kali-desktop-kde
-    state: latest
-    update_cache: true
-  become: true

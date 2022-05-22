@@ -1,7 +1,0 @@
----
-- name: install
-  apt:
-    name: rlwrap
-    state: present
-    update_cache: true
-  become: true

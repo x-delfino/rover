@@ -1,7 +1,0 @@
----
-- name: install
-  apt:
-    name: kali-desktop-mate
-    state: latest
-    update_cache: true
-  become: true

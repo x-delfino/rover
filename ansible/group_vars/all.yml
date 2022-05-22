@@ -1,5 +1,0 @@
----
-ssh_dir: "{{ ansible_user_dir + '/.ssh' }}"
-gui: none
-tools_dir: /opt
-venv_dir: "{{ ansible_user_dir + '/venvs' }}"

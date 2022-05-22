@@ -1,7 +1,0 @@
----
-- name: add vagrant to sudoers
-  community.general.sudoers:
-    name: 99_vagrant
-    commands: ALL
-    nopassword: true
-    user: vagrant
