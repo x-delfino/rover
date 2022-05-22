@@ -30,8 +30,8 @@ Provided templates install roles from the following collections from [ansible-co
 
 ## Usage
 - Clone repo:\
-  `git clone https://github.com/x-delfino/rover.git`
-  or
+  `git clone https://github.com/x-delfino/rover.git`\
+  or\
   `git clone git@github.com:x-delfino/rover.git`
 - Set variables in `vars.json`
 - Run `vagrant up`
