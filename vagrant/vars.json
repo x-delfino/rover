@@ -8,8 +8,8 @@
       "cpus": 2,
       "memory": 2048,
       "playbooks": [
-	      { "path": "config/playbook.yml",
-	        "galaxy_file": "config/requirements.yml"}
+	      { "path": "vagrant/playbook.yml",
+	        "galaxy_file": "vagrant/requirements.yml"}
       ]
     },
     {
@@ -20,8 +20,8 @@
       "cpus": 2,
       "memory": 2048,
       "playbooks": [
-	      { "path": "config/playbook.yml",
-	        "galaxy_file": "config/requirements.yml"}
+	      { "path": "vagrant/playbook.yml",
+	        "galaxy_file": "vagrant/requirements.yml"}
       ]
     }
  
