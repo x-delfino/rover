@@ -5,7 +5,7 @@
 
 require 'json'
 
-VAR_FILE = 'vars.json'
+VAR_FILE = 'config/vars.json'
 
 file = File.read(VAR_FILE)
 vars = JSON.parse(file)

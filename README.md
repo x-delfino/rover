@@ -7,7 +7,7 @@ Vagrantfile built with external json to simplify slightly differing repeatable b
 - Ansible playbooks
 - Ansible galaxy
 
-
+## Defaults
 Provided templates use the following base boxes from [tiffin](https://github.com/x-delfino/tiffin):
 
 | Basebox | Arch | Vagrant Cloud |

@@ -8,8 +8,8 @@
       "cpus": 2,
       "memory": 2048,
       "playbooks": [
-	      { "path": "playbook.yml",
-	        "galaxy_file": "requirements.yml"}
+	      { "path": "config/playbook.yml",
+	        "galaxy_file": "config/requirements.yml"}
       ]
     },
     {
@@ -20,8 +20,8 @@
       "cpus": 2,
       "memory": 2048,
       "playbooks": [
-	      { "path": "playbook.yml",
-	        "galaxy_file": "requirements.yml"}
+	      { "path": "config/playbook.yml",
+	        "galaxy_file": "config/requirements.yml"}
       ]
     }
  
